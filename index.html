@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test de Importancia Social — 25 preguntas</title>
+  <meta name="description" content="Test de importancia social para evaluar tu posición dentro de un círculo social. 25 preguntas con respuestas Sí/No." />
+
+  <!-- Google AdSense (reemplaza con tu ID real) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#0f141c; --muted:#9aa3b2; --text:#eef2f7; --brand:#7aa8ff; --yes:#1fc8a1; --no:#ff6b6b; --ring:#2e3a4d;
+      --grad1:#1e2740; --grad2:#101826; --accent1:#3dd6d0; --accent2:#7aa8ff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      background: radial-gradient(1800px 1100px at 10% -10%, rgba(66,105,255,.12), transparent 70%),
+                  radial-gradient(1600px 1000px at 100% 0%, rgba(61,214,208,.12), transparent 70%),
+                  linear-gradient(180deg, var(--grad1), var(--grad2) 40%);
+      background-attachment: fixed;
+      overflow-x:hidden;
+    }
+    body::before, body::after{
+      content:""; position:fixed; pointer-events:none; border-radius:50%; filter:blur(110px); opacity:.25;
+      width:700px; height:700px; z-index:-1;
+      background:conic-gradient(from 160deg, var(--accent2), transparent 40%, var(--accent1));
+    }
+    body::before{ inset:auto -260px -260px auto; transform:rotate(18deg); }
+    body::after{ inset:-260px auto auto -260px; transform:rotate(-8deg) scale(1.15); }
+
+    .container{max-width:880px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg, rgba(10,14,20,.7), rgba(10,14,20,.35));backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid #1b2432}
+    header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px}
+    h1{font-size:22px;margin:0;font-weight:800;letter-spacing:.2px}
+    .badge{font-size:12px;color:var(--muted);border:1px solid #283449;padding:6px 10px;border-radius:999px;background:linear-gradient(180deg,#0c121b,#0a0f17)}
+
+    .panel{background:linear-gradient(180deg, rgba(16,22,33,.9), rgba(13,19,28,.9));border:1px solid #1a2331;border-radius:22px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03)}
+
+    .intro{display:flex;gap:12px;align-items:flex-start;color:var(--muted);font-size:14px}
+    .intro svg{flex:0 0 auto}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+
+    .q{display:flex;flex-direction:column;gap:10px;padding:16px;border:1px solid #1a2331;border-radius:16px;background:linear-gradient(180deg,#0f1622 0%, #0c121b 100%);box-shadow:0 10px 20px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.03); opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease}
+    .q.reveal{opacity:1; transform:none}
+    .q-num{font-size:12px;color:var(--muted)}
+    .q-text{font-size:16px;line-height:1.36}
+
+    .buttons{display:flex;gap:10px}
+    .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid #283449;background:#0c131d;color:var(--text);cursor:pointer;user-select:none;transition:transform .06s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease; position:relative; overflow:hidden}
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+    .btn[aria-pressed="true"]{border-color:var(--brand);box-shadow:0 0 0 3px rgba(122,168,255,.16) inset}
+    .btn.yes[aria-pressed="true"]{background:linear-gradient(180deg,#112a23,#0f221d);border-color:#1b8f78}
+    .btn.no[aria-pressed="true"]{background:linear-gradient(180deg,#2e1919,#241212);border-color:#b44444}
+    .btn .ico{font-weight:700; opacity:.9}
+    .btn .ripple{position:absolute;border-radius:50%;transform:scale(0);animation:ripple .6s linear; background:rgba(255,255,255,.25)}
+    @keyframes ripple{to{transform:scale(4);opacity:0}}
+
+    .footer{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:20px}
+    .progress{position:relative;height:14px;background:#0b121b;border:1px solid #1a2331;border-radius:999px;overflow:hidden}
+    .progress > span{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));transition:width .35s cubic-bezier(.22,.61,.36,1)}
+    .muted{color:var(--muted);font-size:13px}
+    .actions{display:flex;gap:10px}
+    .btn.small{flex:0 0 auto;padding:10px 14px}
+    .primary{background:linear-gradient(180deg,#3a71ff,#2749c9);border-color:#3a71ff}
+    .primary:hover{filter:brightness(1.06)}
+    .primary:disabled{opacity:.5;cursor:not-allowed}
+    .ghost{background:#0c131d}
+
+    .result{margin-top:18px;padding:18px;border:1px solid #223049;border-radius:18px;background:linear-gradient(180deg,#0c141f,#0a111a);display:none; box-shadow:0 8px 22px rgba(0,0,0,.28)}
+    .result strong{font-size:17px}
+    .score{font-variant-numeric:tabular-nums}
+    .result .pill{display:inline-block;margin-top:8px;padding:6px 10px;border-radius:999px;border:1px solid #2a3952}
+
+    .tip{margin-top:10px; font-size:13px; color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* AdSense: contenedor discreto y estable */
+    .ad-wrap{margin:16px 0; padding:8px; border:1px dashed #223049; border-radius:14px; background:linear-gradient(180deg,#0b121b,#0a0f16); min-height:120px; text-align:center}
+    .ad-label{font-size:11px; color:var(--muted); margin:0 0 6px 6px}
+    @media (min-width:768px){ .ad-wrap{ min-height:90px } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Test de Importancia Social</h1>
+      <span class="badge">25 preguntas · Sí/No</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="intro">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#7aa8ff" opacity=".5"/><path d="M7 12.2l3 3L17.5 8" stroke="#3dd6d0" stroke-width="1.6"/></svg>
+        <p class="muted">Marca una sola opción por pregunta. El botón “Calcular resultado” se activa al completar todas. Interfaz calmada.</p>
+      </div>
+
+      <!-- Ad superior -->
+      <div class="ad-wrap" role="complementary" aria-label="Publicidad" id="ad-top">
+        <p class="ad-label">Publicidad</p>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="1111111111"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="grid" id="questions" role="group" aria-label="Preguntas del test"></div>
+
+      <!-- Ad inferior -->
+      <div class="ad-wrap" role="complementary" aria-label="Publicidad" id="ad-bottom">
+        <p class="ad-label">Publicidad</p>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+      </div>
+
+      <div class="footer">
+        <div style="flex:1;min-width:260px">
+          <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+          <div class="muted" id="counter" style="margin-top:8px">0/25 respondidas</div>
+        </div>
+        <div class="actions">
+          <button id="reset" class="btn ghost small" type="button" title="Borrar respuestas">Reiniciar</button>
+          <button id="submit" class="btn primary small" type="button" disabled>Calcular resultado</button>
+        </div>
+      </div>
+
+      <div class="result" id="result" role="status" aria-live="polite"></div>
+      <p class="tip" id="tip"></p>
+    </section>
+  </main>
+
+  <template id="q-template">
+    <div class="q" data-q>
+      <div class="q-num" data-num></div>
+      <div class="q-text" data-text></div>
+      <div class="buttons" role="radiogroup" aria-label="Respuestas">
+        <button class="btn yes" type="button" data-yes aria-pressed="false"><span class="ico">✓</span> Sí</button>
+        <button class="btn no" type="button" data-no aria-pressed="false"><span class="ico">✕</span> No</button>
+      </div>
+    </div>
+  </template>
+
+  <canvas id="confetti" style="position:fixed;inset:0;pointer-events:none;z-index:20;display:none"></canvas>
+
+  <script>
+    const QUESTIONS = [
+      "¿Las personas te invitan habitualmente a eventos importantes del grupo?",
+      "¿Suelen pedir tu opinión antes de tomar decisiones colectivas?",
+      "¿Tu ausencia en reuniones o quedadas genera comentarios o preguntas?",
+      "¿Eres uno de los primeros en recibir información relevante dentro del grupo?",
+      "¿La gente acude a ti para resolver conflictos internos?",
+      "¿Has presentado a miembros clave del grupo entre sí?",
+      "¿Tus bromas o comentarios suelen generar reacciones inmediatas en el grupo?",
+      "¿Cuando propones un plan, la mayoría suele aceptarlo?",
+      "¿Notas que tu aprobación o desaprobación influye en las acciones de otros?",
+      "¿Has sido anfitrión de encuentros importantes para el grupo?",
+      "¿Los nuevos integrantes suelen ser presentados o introducidos por ti?",
+      "¿Tu opinión ha cambiado el rumbo de una conversación o decisión grupal?",
+      "¿Tienes acceso directo a los miembros más influyentes del grupo?",
+      "¿En situaciones de crisis, la gente busca tu consejo primero?",
+      "¿Sueles marcar tendencias dentro del grupo (moda, actividades, intereses)?",
+      "¿Te consultan sobre quién debe ser invitado o excluido de un evento?",
+      "¿La gente recuerda y menciona tus anécdotas frecuentemente?",
+      "¿Notas que tu aprobación personal mejora la posición de alguien en el grupo?",
+      "¿Has influido en la entrada o salida de miembros del círculo social?",
+      "¿Eres uno de los primeros en ser informado de cambios importantes?",
+      "¿Tienes capacidad de unir a personas con conflictos entre sí?",
+      "¿Los demás esperan tu llegada para iniciar ciertas actividades?",
+      "¿Se mantiene tu lugar en el grupo aunque estés ausente por un tiempo?",
+      "¿Recibes atención preferente en conversaciones grupales?",
+      "¿Sientes que tu imagen pública dentro del grupo está consolidada y respetada?"
+    ];
+
+    const $qs = document.getElementById('questions');
+    const tpl = document.getElementById('q-template');
+    const $submit = document.getElementById('submit');
+    const $reset = document.getElementById('reset');
+    const $bar = document.getElementById('bar');
+    const $counter = document.getElementById('counter');
+    const $result = document.getElementById('result');
+    const $tip = document.getElementById('tip');
+
+    const $confetti = document.getElementById('confetti');
+    const ctx = $confetti.getContext('2d');
+
+    const state = { answers: Array(QUESTIONS.length).fill(null) };
+
+    function mountConfetti(){
+      $confetti.width = window.innerWidth; $confetti.height = window.innerHeight;
+      const pieces = Array.from({length: 200}, () => ({
+        x: Math.random()*$confetti.width,
+        y: -20 - Math.random()*$confetti.height,
+        r: 3 + Math.random()*7,
+        vx: -1 + Math.random()*2,
+        vy: 1 + Math.random()*3,
+        a: Math.random()*Math.PI*2,
+        s: .985 + Math.random()*.02,
+        c: Math.random()>.5? '#7aa8ff' : '#3dd6d0'
+      }));
+      let raf;
+      function draw(){
+        ctx.clearRect(0,0,$confetti.width,$confetti.height);
+        for(const p of pieces){
+          p.a += 0.05; p.x += p.vx + Math.sin(p.a)*0.3; p.y += p.vy; p.vy *= p.s;
+          if(p.y > $confetti.height+20) { p.y = -10; p.x = Math.random()*$confetti.width; }
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+          ctx.fillStyle = p.c; ctx.globalAlpha = .9; ctx.fill(); ctx.globalAlpha = 1;
+        }
+        raf = requestAnimationFrame(draw);
+      }
+      draw();
+      setTimeout(()=>{ cancelAnimationFrame(raf); $confetti.style.display='none'; ctx.clearRect(0,0,$confetti.width,$confetti.height); }, 5000);
+    }
+
+    function ripple(e){
+      const btn = e.currentTarget;
+      const d = Math.max(btn.clientWidth, btn.clientHeight);
+      const circle = document.createElement('span');
+      circle.className = 'ripple';
+      circle.style.width = circle.style.height = d + 'px';
+      const rect = btn.getBoundingClientRect();
+      circle.style.left = (e.clientX - rect.left - d/2) + 'px';
+      circle.style.top = (e.clientY - rect.top - d/2) + 'px';
+      btn.appendChild(circle);
+      setTimeout(()=> circle.remove(), 600);
+    }
+
+    function makeAdNode(slot){
+      const wrap = document.createElement('div');
+      wrap.className = 'ad-wrap';
+      wrap.setAttribute('role','complementary');
+      wrap.setAttribute('aria-label','Publicidad');
+      wrap.innerHTML = `
+        <p class="ad-label">Publicidad</p>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="${slot}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      `;
+      setTimeout(()=> (adsbygoogle = window.adsbygoogle || []).push({}), 0);
+      return wrap;
+    }
+
+    function renderQuestions(){
+      QUESTIONS.forEach((text, idx) => {
+        const node = tpl.content.firstElementChild.cloneNode(true);
+        node.querySelector('[data-num]').textContent = `Pregunta ${idx+1}`;
+        node.querySelector('[data-text]').textContent = text;
+        const yesBtn = node.querySelector('[data-yes]');
+        const noBtn = node.querySelector('[data-no]');
+
+        const select = (val)=>{
+          state.answers[idx] = val;
+          yesBtn.setAttribute('aria-pressed', val === true ? 'true' : 'false');
+          noBtn.setAttribute('aria-pressed', val === false ? 'true' : 'false');
+          updateProgress();
+        };
+
+        yesBtn.addEventListener('click', (e)=>{ ripple(e); select(true); });
+        noBtn.addEventListener('click',  (e)=>{ ripple(e); select(false); });
+
+        $qs.appendChild(node);
+
+        if(idx === 11){ // anuncio intermedio tras la 12
+          $qs.appendChild(makeAdNode('2222222222'));
+        }
+      });
+
+      const io = new IntersectionObserver((entries)=>{
+        for(const en of entries){ if(en.isIntersecting){ en.target.classList.add('reveal'); io.unobserve(en.target); } }
+      }, {threshold:.1});
+      document.querySelectorAll('[data-q]').forEach(el=> io.observe(el));
+    }
+
+    function updateProgress(){
+      const answered = state.answers.filter(v => v !== null).length;
+      const pct = Math.round((answered / state.answers.length) * 100);
+      $bar.style.width = `${pct}%`;
+      $counter.textContent = `${answered}/${state.answers.length} respondidas — ${pct}%`;
+      $submit.disabled = answered !== state.answers.length;
+
+      if(answered === 0) $tip.textContent = "Ritmo sugerido: responde sin prisa. Tu percepción mejora con calma.";
+      else if(answered < 10) $tip.textContent = "Buen comienzo. Observa patrones en tus respuestas.";
+      else if(answered < 20) $tip.textContent = "Mitad del camino. Mantén criterios coherentes.";
+      else if(answered < 25) $tip.textContent = "Últimos pasos. Evalúa sin autoengaño.";
+      else $tip.textContent = "Completado. Calcula el resultado.";
+    }
+
+    function score(){
+      return state.answers.reduce((acc, v) => acc + (v === true ? 1 : 0), 0);
+    }
+
+    function diagnose(sc){
+      if(sc <= 8) return {label:'Importancia baja', desc:'Papel periférico. Prioriza consistencia y presencia.'};
+      if(sc <= 16) return {label:'Importancia media', desc:'Influencia parcial. Refuerza vínculos y liderazgo situacional.'};
+      return {label:'Alta importancia', desc:'Presencia y opinión decisivas en el grupo.'};
+    }
+
+    function showResult(){
+      const sc = score();
+      const diag = diagnose(sc);
+      $result.innerHTML = `<strong>Resultado:</strong> <span class="score">${sc}/25</span> · <strong>${diag.label}</strong><br><span class="muted">${diag.desc}</span><br><span class="pill muted">Interpretación consciente ≫ evita comparaciones automáticas</span>`;
+      $result.style.display = 'block';
+      $result.scrollIntoView({behavior:'smooth', block:'center'});
+
+      $confetti.style.display = 'block';
+      mountConfetti();
+    }
+
+    function resetAll(){
+      state.answers.fill(null);
+      document.querySelectorAll('[data-q]').forEach(q => {
+        q.querySelector('[data-yes]').setAttribute('aria-pressed','false');
+        q.querySelector('[data-no]').setAttribute('aria-pressed','false');
+      });
+      $result.style.display = 'none';
+      $result.textContent = '';
+      updateProgress();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    // Inicializar bloques AdSense estáticos existentes (top y bottom)
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.adsbygoogle').forEach(() => (adsbygoogle = window.adsbygoogle || []).push({}));
+    });
+
+    $submit.addEventListener('click', showResult);
+    $reset.addEventListener('click', resetAll);
+
+    renderQuestions();
+    updateProgress();
+
+    window.addEventListener('resize', ()=>{
+      if($confetti.style.display === 'block'){
+        $confetti.width = window.innerWidth; $confetti.height = window.innerHeight;
+      }
+    });
+  </script>
+</body>
+</html>
